@@ -1,8 +1,24 @@
 {
   "name": "reactjs-weekdays-picker",
   "version": "1.0.0",
-  "description": "Made with create-react-library",
+  "description": "reactjs-weekdays-picker is a highly customizable React library that provides four versatile components for selecting days of the week. Whether you need a simple dropdown, a circular day picker, or a custom menu selector, this package offers flexible and easy-to-integrate options. Each component allows for extensive styling and behavior customization, ensuring seamless integration into any React application.",
   "author": "jaditi930,akshay2002singh",
+  "keywords": [
+    "React",
+    "day picker",
+    "weekdays picker",
+    "React components",
+    "day selection",
+    "customizable picker",
+    "dropdown selector",
+    "circular day picker",
+    "custom menu",
+    "React input components",
+    "week day input",
+    "react-day-selector",
+    "week selection"
+  ]
+  ,
   "license": "MIT",
   "repository": "https://github.com/jaditi930/reactjs-weekdays-picker",
   "main": "dist/index.js",
