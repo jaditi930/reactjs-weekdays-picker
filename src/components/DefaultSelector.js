@@ -24,7 +24,10 @@ const Circle = styled.div`
   cursor: pointer;
   background-color: ${props => props.selected ? props.selectedColor : props.unselectedColor};
   color: ${props => props.selected ? props.selectedTextColor : props.unselectedTextColor};
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, color 0.3s;  
+  font-size: ${props => props.fontSize};
+  font-weight: ${props => props.fontWeight};
+  font-style: ${props => props.fontStyle};
 
   &:hover {
     background-color: ${props => props.selected ? props.selectedHoverColor : props.unselectedHoverColor};
@@ -44,7 +47,10 @@ const DefaultSelector = ({
   selectedTextColor,
   unselectedTextColor,
   width,
-  displayLength,  // New prop to control the display length of day names
+  displayLength,  // control number of char to show
+  fontSize,
+  fontWeight,
+  fontStyle,
 }) => {
   const [selectedDays, setSelectedDays] = useState(state || []);
 
@@ -87,6 +93,9 @@ const DefaultSelector = ({
           unselectedTextColor={unselectedTextColor}
           selectedHoverColor={selectedHoverColor}
           unselectedHoverColor={unselectedHoverColor}
+          fontSize={fontSize}
+          fontWeight={fontWeight}
+          fontStyle={fontStyle}
           onClick={() => toggleDay(day)}
         >
           {getDisplayText(day)}  {/* Display the appropriate number of characters */}
@@ -109,7 +118,10 @@ DefaultSelector.propTypes = {
   selectedTextColor: PropTypes.string,
   unselectedTextColor: PropTypes.string,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  displayLength: PropTypes.number,  // PropType for the new displayLength prop
+  displayLength: PropTypes.number,
+  fontSize: PropTypes.string,
+  fontWeight: PropTypes.string,
+  fontStyle: PropTypes.string,
 };
 
 DefaultSelector.defaultProps = {
@@ -121,8 +133,11 @@ DefaultSelector.defaultProps = {
   unselectedHoverColor: '#f0f0f0',
   selectedTextColor: '#fff',
   unselectedTextColor: '#000',
-  width: '200px',  /* Set a default width to constrain the circles */
-  displayLength: 1,  // Default to show the first letter of each day
+  width: '200px',
+  displayLength: 1,
+  fontSize: '16px',    // Default to inherit font size from parent
+  fontWeight: 'normal',   // Default font weight
+  fontStyle: 'normal',    // Default font style
 };
 
 export default DefaultSelector;

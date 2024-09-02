@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# Example App for `reactjs-weekdays-picker`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains an example application demonstrating the usage of the `reactjs-weekdays-picker` library.
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+Follow these instructions to get the example app running on your local machine.
 
-### `npm start`
+### Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Ensure you have the following installed on your system:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Node.js** (v12 or higher)
+- **npm** (v6 or higher)
 
-### `npm test`
+### Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone the repository**:
 
-### `npm run build`
+    ```bash
+    https://github.com/jaditi930/reactjs-weekdays-picker.git
+    cd reactjs-weekdays-picker/example
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Install dependencies**:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    Run the following command to install the required dependencies:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    ```bash
+    npm install
+    ```
 
-### `npm run eject`
+### Running the App
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+After installing the dependencies, start the development server with:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+This will launch the app in your default web browser. By default, the app will be available at http://localhost:3000.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Using reactjs-weekdays-picker in Your Own Project
 
-## Learn More
+If you want to use the `reactjs-weekdays-picker` library in your own project, you can install it via npm:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm install reactjs-weekdays-picker
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Then, import and use the components in your React application:
 
-### Code Splitting
+```jsx
+import { DefaultSelector, CircularDayPicker, DropdownSelector, CustomMenuSelector } from 'reactjs-weekdays-picker';
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+// Example usage
+const App = () => (
+  <div>
+    <DefaultSelector />
+    <CircularDayPicker />
+    <DropdownSelector />
+    <CustomMenuSelector />
+  </div>
+);
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+export default App;
+```

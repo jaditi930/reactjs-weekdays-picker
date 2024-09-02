@@ -29,7 +29,7 @@ const CircularDayPicker = ({
 }) => {
   // Use internal state if state and setState are not provided
   const [selectedDays, setSelectedDays] = useState(state || []);
-  const [isChartReady, setIsChartReady] = useState(false);
+  const [key, setKey] = useState(0); // used to rerender twice on first render
 
   const config = useMemo(() => ({
     displayModeBar: false, // Hides the mode bar entirely
@@ -104,25 +104,23 @@ const CircularDayPicker = ({
       toggleDay(clickedDay);
     } else {
       console.warn('No points clicked');
-    } 
+    }
   }, [toggleDay]);
 
   useEffect(() => {
-    setIsChartReady(true);
-    return () => setIsChartReady(false); // Cleanup on unmount
+    setKey((prev) => prev+1);
   }, []);
 
-  return (
+  return (  
     <Container>
-      {isChartReady && pieData.length > 0 && (
-        <Plot
-          data={pieData}
-          layout={layout}
-          config={config}
-          onClick={handleClick}
-          aria-label="Circular day selector"
-        />
-      )}
+      <Plot
+        key={key}
+        data={pieData}
+        layout={layout}
+        config={config}
+        onClick={handleClick}
+        aria-label="Circular day selector"
+      />
     </Container>
   );
 };

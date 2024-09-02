@@ -1,10 +1,6 @@
-// src/App.js
 import React from 'react';
 import styled from 'styled-components';
-import DropdownSelector from './components/DropdownSelector';
-import CircularSelector from './components/CircularSelector';
-import CustomMenuSelector from './components/CustomMenuSelector';
-import DefaultSelector from "./components/DefaultSelector"
+import { DropdownSelector, CircularSelector, CustomMenuSelector, DefaultSelector } from 'reactjs-weekdays-picker';
 
 const AppContainer = styled.div`
   display: flex;
@@ -19,10 +15,14 @@ const App = () => {
   return (
     <AppContainer>
       <div>
-        <h1>Week Selector</h1>
+        <h1>Week Selectors</h1>
         <DropdownSelector multiple={true} excludeDays={[0,1]}/>
-        <CircularSelector multiple={true}/>
+        <br/>
+        <br/>
+        <CircularSelector multiple={true} size={250}/>
+        <br/>
         <DefaultSelector/>
+        <br/>
         <CustomMenuSelector multiple={true}/>
       </div>
     </AppContainer>

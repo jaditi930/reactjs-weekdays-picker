@@ -1,6 +1,6 @@
 {
   "name": "reactjs-weekdays-picker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "reactjs-weekdays-picker is a highly customizable React library that provides four versatile components for selecting days of the week. Whether you need a simple dropdown, a circular day picker, or a custom menu selector, this package offers flexible and easy-to-integrate options. Each component allows for extensive styling and behavior customization, ensuring seamless integration into any React application.",
   "author": "jaditi930,akshay2002singh",
   "keywords": [
@@ -17,8 +17,7 @@
     "week day input",
     "react-day-selector",
     "week selection"
-  ]
-  ,
+  ],
   "license": "MIT",
   "repository": "https://github.com/jaditi930/reactjs-weekdays-picker",
   "main": "dist/index.js",
@@ -43,7 +42,6 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
-    "microbundle-crl": "^0.13.10",
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
@@ -57,6 +55,7 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
     "gh-pages": "^2.2.0",
+    "microbundle-crl": "^0.13.10",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
     "react": "^16.13.1",
@@ -65,5 +64,12 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "plotly.js": "^2.35.0",
+    "react-icons": "^5.3.0",
+    "react-plotly.js": "^2.6.0",
+    "styled-components": "^6.1.13"
+  },
+  "homepage": "https://jaditi930.github.io/reactjs-weekdays-picker"
 }
