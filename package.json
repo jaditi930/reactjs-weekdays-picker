@@ -1,75 +1,28 @@
 {
   "name": "reactjs-weekdays-picker",
-  "version": "1.0.1",
-  "description": "reactjs-weekdays-picker is a highly customizable React library that provides four versatile components for selecting days of the week. Whether you need a simple dropdown, a circular day picker, or a custom menu selector, this package offers flexible and easy-to-integrate options. Each component allows for extensive styling and behavior customization, ensuring seamless integration into any React application.",
-  "author": "jaditi930,akshay2002singh",
-  "keywords": [
-    "React",
-    "day picker",
-    "weekdays picker",
-    "React components",
-    "day selection",
-    "customizable picker",
-    "dropdown selector",
-    "circular day picker",
-    "custom menu",
-    "React input components",
-    "week day input",
-    "react-day-selector",
-    "week selection"
-  ],
-  "license": "MIT",
-  "repository": "https://github.com/jaditi930/reactjs-weekdays-picker",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
-  "source": "src/index.js",
-  "engines": {
-    "node": ">=10"
-  },
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs",
-    "prepare": "run-s build",
-    "test": "run-s test:unit test:lint test:build",
-    "test:build": "run-s build",
-    "test:lint": "eslint .",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
-    "predeploy": "cd example && npm install --legacy-peer-deps && npm run build",
-    "deploy": "gh-pages -d example/build"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
-  "peerDependencies": {
-    "react": "^16.0.0"
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "reactjs-weekdays-picker": "^1.0.1"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.3",
-    "cross-env": "^7.0.2",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.7.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-config-standard-react": "^9.2.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.17.0",
-    "eslint-plugin-standard": "^4.0.1",
-    "gh-pages": "^2.2.0",
-    "microbundle-crl": "^0.13.10",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.0.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1"
-  },
-  "files": [
-    "dist"
-  ],
-  "dependencies": {
-    "plotly.js": "^2.35.0",
-    "react-icons": "^5.3.0",
-    "react-plotly.js": "^2.6.0",
-    "styled-components": "^6.1.13"
-  },
-  "homepage": "https://jaditi930.github.io/reactjs-weekdays-picker/"
+    "@eslint/js": "^9.33.0",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^5.0.0",
+    "eslint": "^9.33.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "vite": "^7.1.2"
+  }
 }
