@@ -81,13 +81,13 @@ A circular day picker component that visualizes selected days in a pie chart for
 
 ```jsx
 import React, { useState } from 'react';
-import { CircularDayPicker } from 'reactjs-weekdays-picker';
+import { CircularSelector } from 'reactjs-weekdays-picker';
 
 export default function App() {
   const [selectedDays, setSelectedDays] = useState([]);
 
   return (
-    <CircularDayPicker
+    <CircularSelector
       state={selectedDays}
       setState={setSelectedDays}
       dayList={['Mon', 'Tue', 'Wed', 'Thu', 'Fri']}
