@@ -1,35 +1,37 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   DefaultSelector,
   DropdownSelector,
-  // CircularDayPicker,
+  CircularSelector,
   CustomMenuSelector,
 } from "reactjs-weekdays-picker";
 
-const containerStyle: React.CSSProperties = {
+// ====== Styles ======
+const containerStyle = {
   fontFamily: "sans-serif",
   minHeight: "100vh",
+  color: "#f5f5f5",
+  paddingBottom: "2rem",
 };
 
-const cardStyle: React.CSSProperties = {
-  border: "1px solid #ddd",
+const cardStyle = {
+  border: "1px solid #444",
   borderRadius: "10px",
   padding: "1.5rem",
-  background: "#141111ff",
-  maxWidth: "700px",
+  background: "#1e1e1e",
+  maxWidth: "800px",
   margin: "1.5rem auto",
-  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
 };
 
-const titleStyle: React.CSSProperties = {
+const titleStyle = {
   marginBottom: "0.75rem",
   fontSize: "1.25rem",
   fontWeight: "600",
-  color: "#dfdfdfff",
+  color: "#00d4ff",
 };
 
-const codeBlockStyle: React.CSSProperties = {
-  position: "relative",
+const codeBlockStyle = {
   background: "#2d2d2d",
   color: "#f8f8f2",
   fontFamily: "monospace",
@@ -40,87 +42,39 @@ const codeBlockStyle: React.CSSProperties = {
   marginBottom: "1rem",
 };
 
-const copyBtnStyle: React.CSSProperties = {
-  position: "absolute",
-  top: "6px",
-  right: "6px",
-  background: "#444",
-  color: "#fff",
-  border: "none",
-  fontSize: "0.75rem",
-  padding: "0.25rem 0.5rem",
-  borderRadius: "4px",
-  cursor: "pointer",
-};
-
-function CodeBlock({ code }: { code: string }) {
-  const handleCopy = () => {
-    navigator.clipboard.writeText(code);
-  };
-
-  return (
-    <div style={codeBlockStyle}>
-      <button style={copyBtnStyle} onClick={handleCopy}>
-        Copy
-      </button>
-      <pre style={{ margin: 0, textAlign: "left" }}>{code}</pre>
-    </div>
-  );
-}
-
+// ====== Example Page ======
 export default function ExamplePage() {
-  const [selectedDays1, setSelectedDays1] = useState<string[]>([]);
-  const [selectedDays2, setSelectedDays2] = useState<string[]>([]);
-  const [selectedDays3, setSelectedDays3] = useState<string[]>([]);
-  const [selectedDays4, setSelectedDays4] = useState<string[]>([]);
+  const [daysDefault, setDaysDefault] = useState([]);
+  const [daysDropdown, setDaysDropdown] = useState([]);
+  const [daysCircular, setDaysCircular] = useState([]);
+  const [daysMenu, setDaysMenu] = useState([]);
 
   return (
     <div style={containerStyle}>
       <h1 style={{ textAlign: "center", marginBottom: "1rem" }}>
         📅 reactjs-weekdays-picker — Demo Showcase
       </h1>
-      <p
-        style={{
-          textAlign: "center",
-          color: "#b4b4b4ff",
-          marginBottom: "2rem",
-        }}
-      >
-        A clean single-column layout demonstrating all components of{" "}
-        <code>reactjs-weekdays-picker</code>.
-      </p>
 
       {/* DefaultSelector */}
       <div style={cardStyle}>
-        <h2 style={titleStyle}>1. DefaultSelector</h2>
-        <CodeBlock
-          code={`
-<DefaultSelector
+        <h2 style={titleStyle}>DefaultSelector</h2>
+        <pre style={codeBlockStyle}>{`<DefaultSelector
   multiple={true}
-  state={selectedDays}
-  setState={setSelectedDays}
-  dayList={['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']}
+  state={daysDefault}
+  setState={setDaysDefault}
+  dayList={["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]}
   selectedColor="#007bff"
   unselectedColor="#d3d3d3"
   selectedTextColor="#ffffff"
   unselectedTextColor="#000000"
   width="200px"
   displayLength={3}
-/>`}
-        />
+/>`}</pre>
         <DefaultSelector
           multiple={true}
-          state={selectedDays1}
-          setState={setSelectedDays1}
-          dayList={[
-            "Sunday",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-          ]}
+          state={daysDefault}
+          setState={setDaysDefault}
+          dayList={["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]}
           selectedColor="#007bff"
           unselectedColor="#d3d3d3"
           selectedTextColor="#ffffff"
@@ -132,73 +86,70 @@ export default function ExamplePage() {
 
       {/* DropdownSelector */}
       <div style={cardStyle}>
-        <h2 style={titleStyle}>2. DropdownSelector</h2>
-        <CodeBlock
-          code={`
-<DropdownSelector
-  state={selectedDays}
-  setState={setSelectedDays}
-  dayList={['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}
+        <h2 style={titleStyle}>DropdownSelector</h2>
+        <pre style={codeBlockStyle}>{`<DropdownSelector
+  state={daysDropdown}
+  setState={setDaysDropdown}
+  dayList={["Mon", "Tue", "Wed", "Thu", "Fri"]}
   multiple={true}
-  selectedColor="#007bff"
-  unselectedColor="#d3d3d3"
-  width="200px"
-/>`}
-        />
+  inputTextColor="#ffffff"
+  selectedColor="#ff5722"
+  unselectedColor="#444"
+  width="220px"
+  placeholder="Select"
+/>`}</pre>
         <DropdownSelector
-          state={selectedDays2}
-          setState={setSelectedDays2}
-          dayList={["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]}
+          state={daysDropdown}
+          setState={setDaysDropdown}
+          dayList={["Mon", "Tue", "Wed", "Thu", "Fri"]}
           multiple={true}
-          selectedColor="#007bff"
-          unselectedColor="#d3d3d3"
-          width="200px"
+          inputTextColor="#ffffff"
+          selectedColor="#ff5722"
+          unselectedColor="#444"
+          width="220px"
+          placeholder="Select"
         />
       </div>
 
-      {/* CircularDayPicker */}
+      {/* CircularSelector */}
       <div style={cardStyle}>
-        <h2 style={titleStyle}>3. CircularDayPicker</h2>
-        <CodeBlock
-          code={`
-<CircularDayPicker
-  state={selectedDays}
-  setState={setSelectedDays}
-  dayList={['Mon', 'Tue', 'Wed', 'Thu', 'Fri']}
-  selectedColor="#007bff"
-  unselectedColor="#d3d3d3"
-/>`}
+        <h2 style={titleStyle}>CircularSelector</h2>
+        <pre style={codeBlockStyle}>{`<CircularSelector
+  state={daysCircular}
+  setState={setDaysCircular}
+  dayList={["Sun", "Sat", "Mon", "Tue", "Wed", "Thu", "Fri"]}
+  size="300"
+  selectedColor="#03a9f4"
+  unselectedColor="#444"
+/>`}</pre>
+        <CircularSelector
+          state={daysCircular}
+          setState={setDaysCircular}
+          dayList={["Sun", "Sat", "Mon", "Tue", "Wed", "Thu", "Fri"]}
+          size="300"
+          selectedColor="#03a9f4"
+          unselectedColor="#444"
         />
-        {/* <CircularDayPicker
-          state={selectedDays3}
-          setState={setSelectedDays3}
-          dayList={["Mon", "Tue", "Wed", "Thu", "Fri"]}
-          selectedColor="#007bff"
-          unselectedColor="#d3d3d3"
-        /> */}
       </div>
 
       {/* CustomMenuSelector */}
       <div style={cardStyle}>
-        <h2 style={titleStyle}>4. CustomMenuSelector</h2>
-        <CodeBlock
-          code={`
-<CustomMenuSelector
-  state={selectedDays}
-  setState={setSelectedDays}
-  dayList={['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']}
-  selectedColor="#007bff"
-  unselectedColor="#d3d3d3"
+        <h2 style={titleStyle}>CustomMenuSelector</h2>
+        <pre style={codeBlockStyle}>{`<CustomMenuSelector
+  state={daysMenu}
+  setState={setDaysMenu}
+  dayList={["Mon", "Tue", "Wed"]}
   placeholder="Select days"
-/>`}
-        />
+  showIcons={true}
+  showTicks={true}
+/>`}</pre>
         <CustomMenuSelector
-          state={selectedDays4}
-          setState={setSelectedDays4}
-          dayList={["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]}
-          selectedColor="#007bff"
-          unselectedColor="#d3d3d3"
+          state={daysMenu}
+          setState={setDaysMenu}
+          dayList={["Mon", "Tue", "Wed"]}
           placeholder="Select days"
+          showIcons={true}
+          showTicks={true}
         />
       </div>
     </div>
