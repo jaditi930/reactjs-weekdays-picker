@@ -4,6 +4,8 @@
 
 A customizable React module for day selection with various components like dropdown selectors, circular day pickers, and custom menu selectors.
 
+**Live Demo:** [https://jaditi930.github.io/reactjs-weekdays-picker/](https://jaditi930.github.io/reactjs-weekdays-picker/)
+
 ## Installation
 
 [![NPM](https://nodei.co/npm/reactjs-weekdays-picker.png?compact=true)](https://nodei.co/npm/reactjs-weekdays-picker/)
