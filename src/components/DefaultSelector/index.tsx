@@ -1,38 +1,83 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 const defaultDaysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-const CircleWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;  /* Allow circles to wrap to the next line */
-  justify-content: space-between;
-  gap: 10px;  /* Space between circles */
-  width: ${props => props.width || '100%'};
-  padding: 10px;
-  box-sizing: border-box;  /* Ensure padding is included in the width */
-`;
+// const CircleWrapper = {
+//   display: flex,
+//   flex-wrap: wrap;  /* Allow circles to wrap to the next line */
+//   justify-content: space-between;
+//   gap: 10px;  /* Space between circles */
+//   width: ${props => props.width || '100%'};
+//   padding: 10px;
+//   box-sizing: border-box;  /* Ensure padding is included in the width */
+// }
 
-const Circle = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background-color: ${props => props.selected ? props.selectedColor : props.unselectedColor};
-  color: ${props => props.selected ? props.selectedTextColor : props.unselectedTextColor};
-  transition: background-color 0.3s, color 0.3s;  
-  font-size: ${props => props.fontSize};
-  font-weight: ${props => props.fontWeight};
-  font-style: ${props => props.fontStyle};
+const wrapperStyles: React.CSSProperties = {
+  display: "flex",
+  flexWrap: "wrap", 
+  justifyContent: "space-between",
+  gap: "10px", 
+  width: "100%", 
+  padding: "10px",
+  boxSizing: "border-box", 
+};
 
-  &:hover {
-    background-color: ${props => props.selected ? props.selectedHoverColor : props.unselectedHoverColor};
-  }
-`;
+const circleStyles: React.CSSProperties = {
+  width: "40px",
+  height: "40px",
+  borderRadius: "50%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  cursor: "pointer",
+  transition: "background-color 0.3s, color 0.3s",
+  fontSize: "16px",
+  fontWeight: "normal",
+  fontStyle: "normal",
+};
+
+interface IDefaultSelectorProps {
+  multiple?: boolean;
+  dayList?: string[];
+  state?: string[];
+  setState?: (days: string[]) => void;
+  onDayChange?: (days: string[]) => void;
+
+  selectedColor?: string;
+  unselectedColor?: string;
+  selectedHoverColor?: string;
+  unselectedHoverColor?: string;
+  selectedTextColor?: string;
+  unselectedTextColor?: string;
+
+  width?: string | number;
+  displayLength?: number;
+
+  fontSize?: string;
+  fontWeight?: string;
+  fontStyle?: string;
+}
+
+
+// const Circle = styled.div`
+//   width: 40px;
+//   height: 40px;
+//   border-radius: 50%;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   cursor: pointer;
+//   background-color: ${props => props.selected ? props.selectedColor : props.unselectedColor};
+//   color: ${props => props.selected ? props.selectedTextColor : props.unselectedTextColor};
+//   transition: background-color 0.3s, color 0.3s;  
+//   font-size: ${props => props.fontSize};
+//   font-weight: ${props => props.fontWeight};
+//   font-style: ${props => props.fontStyle};
+
+//   &:hover {
+//     background-color: ${props => props.selected ? props.selectedHoverColor : props.unselectedHoverColor};
+//   }
+// `;
 
 const DefaultSelector = ({
   multiple,
@@ -51,7 +96,7 @@ const DefaultSelector = ({
   fontSize,
   fontWeight,
   fontStyle,
-}) => {
+}:IDefaultSelectorProps) => {
   const [selectedDays, setSelectedDays] = useState(state || []);
 
   const toggleDay = (day) => {
@@ -82,9 +127,10 @@ const DefaultSelector = ({
   };
 
   return (
-    <CircleWrapper width={width}>
-      {dayList.map((day, index) => (
-        <Circle
+    <div style={{...wrapperStyles,width:width}}>
+      {dayList?.map((day, index) => (
+        <div 
+          style={circleStyles}
           key={index}
           selected={selectedDays.includes(day)}
           selectedColor={selectedColor}
@@ -99,9 +145,9 @@ const DefaultSelector = ({
           onClick={() => toggleDay(day)}
         >
           {getDisplayText(day)}  {/* Display the appropriate number of characters */}
-        </Circle>
+        </div>
       ))}
-    </CircleWrapper>
+    </div>
   );
 };
 
