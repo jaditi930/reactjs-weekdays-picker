@@ -1,97 +1,61 @@
-
-
 import React, { useState, useRef, useEffect } from "react";
 import { FaCheck } from "react-icons/fa";
+import { CustomMenuSelectorProps } from "./types";
+import { defaultIcons } from "./constants";
+import "./styles.css";
 
-const defaultIcons: Record<string, string> = {
-  Sun: "🌞",
-  Mon: "🌛",
-  Tue: "🌮",
-  Wed: "🍹",
-  Thu: "🎉",
-  Fri: "🍻",
-  Sat: "🎨",
-};
-
-export interface CustomMenuSelectorProps {
-  dayList?: string[];
-  state?: string[];
-  setState?: (days: string[]) => void;
-  onDayChange?: (days: string[]) => void;
-
-  selectedColor?: string;
-  unselectedColor?: string;
-  selectedHoverColor?: string;
-  unselectedHoverColor?: string;
-
-  width?: string | number;
-  fontSize?: string;
-  fontWeight?: string;
-  fontStyle?: string;
-
-  selectedTextColor?: string;
-  unselectedTextColor?: string;
-  inputTextColor?: string;
-  placeholder?: string;
-
-  multiple?: boolean;
-  iconAlign?: "top" | "bottom" | "left" | "right";
-  displayOption?: "icon" | "word" | "both";
-  showIcons?: boolean;
-  showTicks?: boolean;
-  excludeDays?: string[];
-
-  tickOrder?: number;
-  dayOrder?: number;
-  iconOrder?: number;
+interface MenuPosition {
+  top: string;
+  left: string;
+  right: string;
+  bottom: string;
+  flexDirection: React.CSSProperties["flexDirection"];
 }
 
 const CustomMenuSelector: React.FC<CustomMenuSelectorProps> = ({
   dayList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-  state = [],
-  setState,
-  onDayChange,
-
+  state = null,
+  setState = null,
+  onDayChange = null,
   selectedColor = "#007bff",
   unselectedColor = "#ffffff",
   selectedHoverColor = "#0056b3",
   unselectedHoverColor = "#f0f0f0",
-
   width = "auto",
   fontSize = "16px",
   fontWeight = "normal",
   fontStyle = "normal",
-
   selectedTextColor = "#ffffff",
   unselectedTextColor = "#333333",
   inputTextColor = "#000000",
   placeholder = "Select days",
-
   multiple = false,
   iconAlign = "right",
   displayOption = "both",
   showIcons = true,
   showTicks = true,
   excludeDays = [],
-
   tickOrder = 3,
   dayOrder = 2,
   iconOrder = 1,
-
-  style,
+  inputBgColor = "#fff",
+  // advance styling
+  inputBoxStyle = {},
+  dropdownContainerStyle = {},
+  dropdownItemStyle = {},
 }) => {
   const [showMenu, setShowMenu] = useState(false);
-  const [selectedDays, setSelectedDays] = useState<string[]>(state);
-  const [menuPosition, setMenuPosition] = useState({
+  const [selectedDays, setSelectedDays] = useState<string[]>(state || []);
+  const [menuPosition, setMenuPosition] = useState<MenuPosition>({
     top: "auto",
     left: "auto",
     right: "auto",
-    flexDirection: "row" as "row" | "row-reverse" | "column" | "column-reverse",
+    bottom: "auto",
+    flexDirection: "row",
   });
 
-  const menuRef = useRef<HTMLDivElement | null>(null);
-  const inputRef = useRef<HTMLInputElement | null>(null);
-
+  const menuRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const viewportHeight = window.innerHeight;
   const viewportWidth = window.innerWidth;
 
@@ -104,6 +68,7 @@ const CustomMenuSelector: React.FC<CustomMenuSelectorProps> = ({
     } else {
       updatedDays = multiple ? [...selectedDays, day] : [day];
     }
+
     setSelectedDays(updatedDays);
     setState?.(updatedDays);
     onDayChange?.(updatedDays);
@@ -127,7 +92,7 @@ const CustomMenuSelector: React.FC<CustomMenuSelectorProps> = ({
   const handleMenuPosition = () => {
     if (inputRef.current && menuRef.current) {
       const inputRect = inputRef.current.getBoundingClientRect();
-      const { width } = getMenuDimensions();
+      const { width, height } = getMenuDimensions();
 
       if (inputRect.left + width <= viewportWidth) {
         setMenuPosition((prev) => ({ ...prev, left: "0" }));
@@ -161,7 +126,6 @@ const CustomMenuSelector: React.FC<CustomMenuSelectorProps> = ({
     if (inputRef.current && menuRef.current) {
       const inputRect = inputRef.current.getBoundingClientRect();
       const { height } = getMenuDimensions();
-
       if (inputRect.bottom + height > viewportHeight) {
         setMenuPosition((prev) => ({
           ...prev,
@@ -174,93 +138,83 @@ const CustomMenuSelector: React.FC<CustomMenuSelectorProps> = ({
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
-    <div className="menu-selector-wrapper">
+    <div className="cms-wrapper">
       <input
         ref={inputRef}
         readOnly
+        className="cms-input"
         value={selectedDays.join(", ")}
         onClick={() => !showMenu && setShowMenu(true)}
         placeholder={placeholder}
         style={{
-          padding: "10px",
           fontSize,
+          color: inputTextColor,
+          borderColor: selectedColor,
           fontWeight,
           fontStyle,
-          color: inputTextColor,
-          border: "1px solid #ccc",
-          borderRadius: "4px",
-          cursor: "pointer",
+          backgroundColor: inputBgColor,
+          ...inputBoxStyle
         }}
       />
       <div
         ref={menuRef}
-        className="menu-selector-dropdown"
+        className={`cms-menu ${showMenu ? "show" : ""}`}
         style={{
-          display: showMenu ? "flex" : "none",
-          flexDirection: menuPosition.flexDirection,
-          position: "absolute",
           width,
           top: menuPosition.top,
           left: menuPosition.left,
           right: menuPosition.right,
-          backgroundColor: "white",
-          border: "1px solid #ccc",
-          borderRadius: "4px",
-          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
-          zIndex: 1000,
+          bottom: menuPosition.bottom,
+          flexDirection: menuPosition.flexDirection,
+          ...dropdownContainerStyle
         }}
       >
         {dayList.map((day, index) => {
           if (excludeDays.includes(day)) return null;
-          const isSelected = selectedDays.includes(day);
+          const selected = selectedDays.includes(day);
           return (
             <button
               key={index}
               onClick={() => toggleDay(day)}
+              className={`cms-day-button cms-align-${iconAlign}`}
               style={{
-                flex: 1,
-                padding: "10px",
-                backgroundColor: isSelected ? selectedColor : unselectedColor,
-                color: isSelected ? selectedTextColor : unselectedTextColor,
-                border: "none",
-                cursor: "pointer",
+                backgroundColor: selected ? selectedColor : unselectedColor,
+                color: selected ? selectedTextColor : unselectedTextColor,
                 fontSize,
                 fontWeight,
-                fontStyle,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                transition: "background-color 0.3s, color 0.3s",
+                ...dropdownItemStyle
               }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                  isSelected ? selectedHoverColor : unselectedHoverColor;
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                  isSelected ? selectedColor : unselectedColor;
-              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.backgroundColor = selected
+                  ? selectedHoverColor
+                  : unselectedHoverColor)
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.backgroundColor = selected
+                  ? selectedColor
+                  : unselectedColor)
+              }
             >
               {showIcons && displayOption !== "word" && (
-                <span style={{ order: iconOrder, margin: "0 4px" }}>
+                <span className="cms-icon" style={{ order: iconOrder }}>
                   {icons[day]}
                 </span>
               )}
               {displayOption !== "icon" && (
-                <span style={{ order: dayOrder }}>{day}</span>
+                <span className="cms-day-text" style={{ order: dayOrder }}>
+                  {day}
+                </span>
               )}
               {showTicks && (
                 <FaCheck
+                  className="cms-tick"
                   style={{
                     order: tickOrder,
-                    visibility: isSelected ? "visible" : "hidden",
-                    margin: "0 4px",
+                    visibility: selected ? "visible" : "hidden",
                   }}
                 />
               )}

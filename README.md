@@ -147,12 +147,15 @@ export default function App() {
 
 ### Additional Props for DefaultSelector
 
-| Name                  | Type     | Required | Default  | Description                                   |
-|-----------------------|----------|----------|----------|-----------------------------------------------|
-| `width`              | string   | false    | `150px`                                       | Width of the component.                              |
-| `selectedHoverColor`  | string   | false    | `#0056b3` | Hover color for selected items.               |
-| `unselectedHoverColor`| string   | false    | `#f0f0f0` | Hover color for unselected items.             |
-| `displayLength`       | number   | false    | `1`      | Number of characters to display for each day. |
+| Name                   | Type                  | Required | Default    | Description                                   |
+|------------------------|-----------------------|----------|------------|-----------------------------------------------|
+| `width`                | `string`              | false    | `'150px'`  | Width of the component.                       |
+| `selectedHoverColor`   | `string`              | false    | `#0056b3`  | Hover color for selected items.               |
+| `unselectedHoverColor` | `string`              | false    | `#f0f0f0`  | Hover color for unselected items.             |
+| `displayLength`        | `number`              | false    | `1`        | Number of characters to display for each day. |
+| `optionContainerStyle` | `React.CSSProperties` | false    | `undefined`| Custom styles for the options container.      |
+| `optionStyle`          | `React.CSSProperties` | false    | `undefined`| Custom styles for each option.                |
+
 
 ### Additional Props for CircularDayPicker
 
@@ -169,22 +172,26 @@ export default function App() {
 | `width`              | string   | false    | `150px`                                       | Width of the component.                              |
 | `inputTextColor`      | string   | false    | `#000000`       | Color of the input text.                      |
 | `placeholder`         | string   | false    | `Select days`   | Placeholder text for the dropdown input.      |
+| `optionContainerStyle` | `React.CSSProperties` | false    | `undefined`| Custom styles for the options container.      |
+| `optionStyle`          | `React.CSSProperties` | false    | `undefined`| Custom styles for each option.                |
 
 ### Additional Props for CustomMenuSelector
 
-| Name           | Type   | Required | Default         | Description                                    |
-|----------------|--------|----------|-----------------|------------------------------------------------|
-| `width`              | string   | false    | `auto`                                       | Width of the component.                              |
-| `inputTextColor`| string | false    | `#000000`       | Color of the input text.                       |
-| `placeholder`   | string | false    | `Select days`   | Placeholder text for the dropdown input.       |
-| `iconAlign`     | string | false    | `right`         | Alignment of icons in the dropdown menu.       |
-| `displayOption` | string | false    | `both`          | Determines what to display: icons, text, or both. |
-| `showIcons`     | bool   | false    | `true`          | Whether to display icons next to the items.    |
-| `showTicks`     | bool   | false    | `true`          | Whether to show ticks for selected items.      |
-| `excludeDays`   | array  | false    | `[]`            | List of days to exclude from the menu.         |
-| `iconOrder`     | number | false    | `1`             | Order of the icons in the dropdown.            |
-| `dayOrder`      | number | false    | `2`             | Order of the day names in the dropdown.        |
-| `tickOrder`     | number | false    | `3`             | Order of the tick marks in the dropdown.       |
+| Name                    | Type                  | Required | Default       | Description                                        |
+|-------------------------|-----------------------|----------|---------------|----------------------------------------------------|
+| `width`                 | `string`              | false    | `'auto'`      | Width of the component.                           |
+| `inputTextColor`        | `string`              | false    | `'#000000'`   | Color of the input text.                          |
+| `placeholder`           | `string`              | false    | `'Select days'` | Placeholder text for the dropdown input.         |
+| `iconAlign`             | `string`              | false    | `'right'`     | Alignment of icons in the dropdown menu.          |
+| `displayOption`         | `string`              | false    | `'both'`      | Determines what to display: icons, text, or both. |
+| `showIcons`             | `boolean`             | false    | `true`        | Whether to display icons next to the items.       |
+| `showTicks`             | `boolean`             | false    | `true`        | Whether to show ticks for selected items.         |
+| `excludeDays`           | `array`               | false    | `[]`          | List of days to exclude from the menu.            |
+| `iconOrder`             | `number`              | false    | `1`           | Order of the icons in the dropdown.               |
+| `dayOrder`              | `number`              | false    | `2`           | Order of the day names in the dropdown.           |
+| `tickOrder`             | `number`              | false    | `3`           | Order of the tick marks in the dropdown.          |
+| `dropdownContainerStyle`| `React.CSSProperties` | false    | `undefined`   | Custom styles for the dropdown container.         |
+| `dropdownItemStyle`     | `React.CSSProperties` | false    | `undefined`   | Custom styles for each dropdown item.             |
 
 ## License
 

@@ -1,0 +1,5 @@
+.circular-wrapper .plotly .hoverlayer,
+.circular-wrapper .plotly .pie,
+.circular-wrapper .plotly .slice {
+  cursor: pointer;
+}

@@ -1,40 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
+import { DropdownSelectorProps } from "./types";
+import { defaultDaysOfWeek } from "./constants";
 import "./styles.css";
-
-const defaultDaysOfWeek = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-
-export interface DropdownSelectorProps {
-  multiple?: boolean;
-  dayList?: string[];
-  state?: string[];
-  setState?: (days: string[]) => void;
-  onDayChange?: (days: string[]) => void;
-  selectedColor?: string;
-  unselectedColor?: string;
-  selectedHoverColor?: string;
-  unselectedHoverColor?: string;
-  width?: string | number;
-  fontSize?: string;
-  fontWeight?: string;
-  fontStyle?: string;
-  selectedTextColor?: string;
-  unselectedTextColor?: string;
-  inputTextColor?: string;
-  placeholder?: string;
-}
 
 const DropdownSelector: React.FC<DropdownSelectorProps> = ({
   multiple = false,
   dayList = defaultDaysOfWeek,
-  state = [],
+  state,
   setState,
   onDayChange,
   selectedColor = "#007bff",
@@ -43,25 +15,28 @@ const DropdownSelector: React.FC<DropdownSelectorProps> = ({
   unselectedHoverColor = "#f0f0f0",
   width = "150px",
   fontSize = "16px",
-  fontWeight = "normal",
+  fontWeight = "400",
   fontStyle = "normal",
   selectedTextColor = "#fff",
   unselectedTextColor = "#000",
   inputTextColor = "#000",
   placeholder = "Select days",
+  inputBgColor = "#fff",
+  // advance styling
+  inputBoxStyle = {},
+  dropdownContainerStyle = {},
+  dropdownItemStyle = {},
 }) => {
-  const [selectedDays, setSelectedDays] = useState<string[]>(state);
+  const [selectedDays, setSelectedDays] = useState<string[]>(state || []);
   const [showPopup, setShowPopup] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   const toggleDay = (day: string) => {
     let updatedDays: string[];
     if (multiple) {
-      if (selectedDays.includes(day)) {
-        updatedDays = selectedDays.filter((d) => d !== day);
-      } else {
-        updatedDays = [...selectedDays, day];
-      }
+      updatedDays = selectedDays.includes(day)
+        ? selectedDays.filter((d) => d !== day)
+        : [...selectedDays, day];
     } else {
       updatedDays = [day];
     }
@@ -70,10 +45,13 @@ const DropdownSelector: React.FC<DropdownSelectorProps> = ({
     onDayChange?.(updatedDays);
   };
 
-  const handleInputClick = () => setShowPopup((prev) => !prev);
+  const handleInputClick = () => setShowPopup(!showPopup);
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+    if (
+      wrapperRef.current &&
+      !wrapperRef.current.contains(event.target as Node)
+    ) {
       setShowPopup(false);
     }
   };
@@ -85,9 +63,9 @@ const DropdownSelector: React.FC<DropdownSelectorProps> = ({
 
   return (
     <div
-      className="wrapper"
-      style={{ width: typeof width === "number" ? `${width}px` : width }}
       ref={wrapperRef}
+      className="dropdown-wrapper"
+      style={{ width: `max(${width}, 150px)` }}
     >
       <input
         type="text"
@@ -95,29 +73,41 @@ const DropdownSelector: React.FC<DropdownSelectorProps> = ({
         value={selectedDays.join(", ")}
         onClick={handleInputClick}
         placeholder={placeholder}
-        className="input"
-        style={{ fontSize, fontWeight, fontStyle, color: inputTextColor }}
+        className="dropdown-input"
+        style={{
+          fontSize,
+          fontWeight,
+          fontStyle,
+          color: inputTextColor,
+          backgroundColor: inputBgColor,
+          ...inputBoxStyle,
+        }}
       />
+
       {showPopup && (
-        <div className="popup">
+        <div
+          className="dropdown-popup"
+          style={{ width: "100%", ...dropdownContainerStyle }}
+        >
           {dayList.map((day, index) => {
             const isSelected = selectedDays.includes(day);
             return (
               <div
                 key={index}
-                className="item"
-                style={{
-                  background: isSelected ? selectedColor : unselectedColor,
-                  color: isSelected ? selectedTextColor : unselectedTextColor,
-                }}
+                className="dropdown-item"
                 onClick={() => toggleDay(day)}
+                style={{
+                  backgroundColor: isSelected ? selectedColor : unselectedColor,
+                  color: isSelected ? selectedTextColor : unselectedTextColor,
+                  ...dropdownItemStyle,
+                }}
                 onMouseEnter={(e) =>
-                  (e.currentTarget.style.background = isSelected
+                  (e.currentTarget.style.backgroundColor = isSelected
                     ? selectedHoverColor
                     : unselectedHoverColor)
                 }
                 onMouseLeave={(e) =>
-                  (e.currentTarget.style.background = isSelected
+                  (e.currentTarget.style.backgroundColor = isSelected
                     ? selectedColor
                     : unselectedColor)
                 }

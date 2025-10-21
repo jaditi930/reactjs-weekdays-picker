@@ -1,0 +1,86 @@
+.cms-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.cms-input {
+  padding: 10px;
+  font-size: var(--font-size);
+  color: var(--input-text-color);
+  cursor: pointer;
+  border: 0px solid transparent;
+  outline: 0px;
+  border-radius: 4px;
+}
+
+.cms-input:focus {
+  outline: none;
+  border-color: var(--selected-color);
+}
+
+.cms-menu {
+  position: absolute;
+  margin-top: 4px;
+  display: none;
+  background-color: white;
+  /* border: 1px solid #ccc; */
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); */
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.cms-menu.show {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cms-day-button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 0px;
+}
+
+.cms-day-button:focus {
+  outline: none;
+}
+
+.cms-icon,
+.cms-day-text,
+.cms-tick {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Alignment styles */
+.cms-align-top {
+  flex-direction: column-reverse;
+}
+.cms-align-bottom {
+  flex-direction: column;
+}
+.cms-align-left {
+  flex-direction: row-reverse;
+}
+.cms-align-right {
+  flex-direction: row;
+}

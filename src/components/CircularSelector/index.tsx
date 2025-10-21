@@ -1,41 +1,12 @@
-import React, {
-  useState,
-  useEffect,
-  useMemo,
-  useCallback,
-} from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import Plot from "react-plotly.js";
+import { CircularSelectorProps } from "./types";
+import { defaultDaysOfWeek } from "./constants";
+import "./styles.css";
 
-export interface CircularDayPickerProps {
-  multiple?: boolean;
-  dayList?: string[];
-  state?: string[] | null;
-  setState?: ((days: string[]) => void) | null;
-  onDayChange?: ((days: string[]) => void) | null;
-  selectedColor?: string;
-  unselectedColor?: string;
-  selectedHoverColor?: string;
-  unselectedHoverColor?: string;
-  size?: number | string;
-  fontSize?: string;
-  fontWeight?: string;
-  fontStyle?: string;
-  selectedTextColor?: string;
-  unselectedTextColor?: string;
-}
-
-// ✅ Component
-const CircularDayPicker: React.FC<CircularDayPickerProps> = ({
+const CircularSelector: React.FC<CircularSelectorProps> = ({
   multiple = false,
-  dayList = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ],
+  dayList = defaultDaysOfWeek,
   state = null,
   setState = null,
   onDayChange = null,
@@ -45,16 +16,15 @@ const CircularDayPicker: React.FC<CircularDayPickerProps> = ({
   unselectedHoverColor = "#f0f0f0",
   size = 300,
   fontSize = "14px",
-  fontWeight = "normal",
+  fontWeight = "400",
   fontStyle = "normal",
   selectedTextColor = "#fff",
   unselectedTextColor = "#000",
 }) => {
-  // internal state if state/setState not provided
   const [selectedDays, setSelectedDays] = useState<string[]>(state || []);
-  const [key, setKey] = useState(0);
+  const [hoveredDay, setHoveredDay] = useState<string | null>(null);
+  const [key, setKey] = useState<number>(0);
 
-  // ✅ Plotly config
   const config = useMemo(
     () => ({
       displayModeBar: false,
@@ -64,13 +34,14 @@ const CircularDayPicker: React.FC<CircularDayPickerProps> = ({
     []
   );
 
-  // ✅ Layout
   const layout = useMemo(
     () => ({
-      height: size,
-      width: size,
+      height: typeof size === "number" ? size : parseFloat(size),
+      width: typeof size === "number" ? size : parseFloat(size),
       margin: { t: 0, b: 0, l: 0, r: 0 },
       showlegend: false,
+      paper_bgcolor: "transparent", // canvas background
+      plot_bgcolor: "#ed1919ff", // chart area background
       font: {
         size: parseFloat(fontSize),
         color: selectedTextColor,
@@ -82,23 +53,19 @@ const CircularDayPicker: React.FC<CircularDayPickerProps> = ({
     [size, fontSize, fontWeight, fontStyle, selectedTextColor]
   );
 
-  // ✅ Toggle day logic
   const toggleDay = useCallback(
     (clickedDay: string) => {
       setSelectedDays((prevSelectedDays) => {
-        const currentDays = state || prevSelectedDays;
+        const current = state || prevSelectedDays;
         let updatedDays: string[];
-
         if (multiple) {
-          if (currentDays.includes(clickedDay)) {
-            updatedDays = currentDays.filter((day) => day !== clickedDay);
+          if (current.includes(clickedDay)) {
+            updatedDays = current.filter((d) => d !== clickedDay);
           } else {
-            updatedDays = [...currentDays, clickedDay];
+            updatedDays = [...current, clickedDay];
           }
         } else {
-          updatedDays = currentDays.includes(clickedDay)
-            ? []
-            : [clickedDay];
+          updatedDays = current.includes(clickedDay) ? [] : [clickedDay];
         }
 
         if (setState) {
@@ -106,7 +73,6 @@ const CircularDayPicker: React.FC<CircularDayPickerProps> = ({
         } else {
           setSelectedDays(updatedDays);
         }
-
         if (onDayChange) {
           onDayChange(updatedDays);
         }
@@ -117,22 +83,27 @@ const CircularDayPicker: React.FC<CircularDayPickerProps> = ({
     [multiple, state, setState, onDayChange]
   );
 
-  // ✅ Pie data
   const pieData = useMemo(
     () => [
       {
-        type: "pie" as const,
+        type: "pie",
         values: Array(dayList.length).fill(1),
         labels: dayList,
         textinfo: "label",
         textposition: "inside",
         automargin: true,
         marker: {
-          colors: dayList.map((day) =>
-            (state || selectedDays).includes(day)
-              ? selectedColor
-              : unselectedColor
-          ),
+          colors: dayList.map((day) => {
+            if (day === hoveredDay) {
+              return (state || selectedDays).includes(day)
+                ? selectedHoverColor
+                : unselectedHoverColor;
+            } else {
+              return (state || selectedDays).includes(day)
+                ? selectedColor
+                : unselectedColor;
+            }
+          }),
         },
         hoverinfo: "label",
         hoverlabel: {
@@ -152,6 +123,7 @@ const CircularDayPicker: React.FC<CircularDayPickerProps> = ({
       },
     ],
     [
+      dayList,
       selectedDays,
       state,
       selectedColor,
@@ -160,15 +132,14 @@ const CircularDayPicker: React.FC<CircularDayPickerProps> = ({
       unselectedHoverColor,
       selectedTextColor,
       unselectedTextColor,
-      dayList,
+      hoveredDay,
     ]
   );
 
-  // ✅ Click handler
   const handleClick = useCallback(
     (data: any) => {
-      if (data.points?.length > 0) {
-        const clickedDay = data.points[0].label as string;
+      if (data.points && data.points.length > 0) {
+        const clickedDay = data.points[0].label;
         toggleDay(clickedDay);
       } else {
         console.warn("No points clicked");
@@ -177,23 +148,31 @@ const CircularDayPicker: React.FC<CircularDayPickerProps> = ({
     [toggleDay]
   );
 
-  // ✅ force rerender once
   useEffect(() => {
-    setKey((prev) => prev + 1);
+    // force re-render on mount so Plotly correctly draws
+    setKey((k) => k + 1);
   }, []);
 
   return (
-    <div className="circular-day-picker">
+    <div>
       <Plot
         key={key}
-        data={pieData}
-        layout={layout}
-        config={config}
+        data={pieData as any}
+        layout={layout as any}
+        config={config as any}
         onClick={handleClick}
         aria-label="Circular day selector"
+        style={{ cursor: "pointer" }}
+        onHover={(data) => {
+          const point = data.points?.[0] as any; // assert as any for now
+          if (point?.label) {
+            setHoveredDay(point.label);
+          }
+        }}
+        onUnhover={() => setHoveredDay(null)}
       />
     </div>
   );
 };
 
-export default CircularDayPicker;
+export default CircularSelector;
