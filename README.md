@@ -13,7 +13,7 @@ A customizable React module for day selection with various components like dropd
 #### To install the latest stable version:
 
 ```bash
-npm install --save reactjs-weekdays-picker
+npm install reactjs-weekdays-picker
 ```
 
 ## Usage
