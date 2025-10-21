@@ -153,8 +153,8 @@ export default function App() {
 | `selectedHoverColor`   | `string`              | false    | `#0056b3`  | Hover color for selected items.               |
 | `unselectedHoverColor` | `string`              | false    | `#f0f0f0`  | Hover color for unselected items.             |
 | `displayLength`        | `number`              | false    | `1`        | Number of characters to display for each day. |
-| `optionContainerStyle` | `React.CSSProperties` | false    | `undefined`| Custom styles for the options container.      |
-| `optionStyle`          | `React.CSSProperties` | false    | `undefined`| Custom styles for each option.                |
+| `optionContainerStyle` | `React.CSSProperties` | false    | `{}`| Custom styles for the options container.      |
+| `optionStyle`          | `React.CSSProperties` | false    | `{}`| Custom styles for each option.                |
 
 
 ### Additional Props for CircularDayPicker
@@ -172,8 +172,11 @@ export default function App() {
 | `width`              | string   | false    | `150px`                                       | Width of the component.                              |
 | `inputTextColor`      | string   | false    | `#000000`       | Color of the input text.                      |
 | `placeholder`         | string   | false    | `Select days`   | Placeholder text for the dropdown input.      |
-| `optionContainerStyle` | `React.CSSProperties` | false    | `undefined`| Custom styles for the options container.      |
-| `optionStyle`          | `React.CSSProperties` | false    | `undefined`| Custom styles for each option.                |
+| `inputBgColor`             | `string`              | false    | `#fff`           | Background color of the 
+input box.        | 
+| `inputBoxStyle` | `React.CSSProperties` | false    | `{}`| Custom styles for the input box.      |
+| `dropdownContainerStyle` | `React.CSSProperties` | false    | `{}`| Custom styles for the dropdown container.      |
+| `dropdownItemStyle`          | `React.CSSProperties` | false    | `{}`| Custom styles for each dropdown item.                |
 
 ### Additional Props for CustomMenuSelector
 
@@ -190,8 +193,11 @@ export default function App() {
 | `iconOrder`             | `number`              | false    | `1`           | Order of the icons in the dropdown.               |
 | `dayOrder`              | `number`              | false    | `2`           | Order of the day names in the dropdown.           |
 | `tickOrder`             | `number`              | false    | `3`           | Order of the tick marks in the dropdown.          |
-| `dropdownContainerStyle`| `React.CSSProperties` | false    | `undefined`   | Custom styles for the dropdown container.         |
-| `dropdownItemStyle`     | `React.CSSProperties` | false    | `undefined`   | Custom styles for each dropdown item.             |
+| `inputBgColor`             | `string`              | false    | `#fff`           | Background color of the 
+input box.        | 
+| `inputBoxStyle` | `React.CSSProperties` | false    | `{}`| Custom styles for the input box.      |
+| `dropdownContainerStyle`| `React.CSSProperties` | false    | `{}`   | Custom styles for the dropdown container.         |
+| `dropdownItemStyle`     | `React.CSSProperties` | false    | `{}`   | Custom styles for each dropdown item.             |
 
 ## License
 
