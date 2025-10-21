@@ -22,7 +22,7 @@ npm install reactjs-weekdays-picker
 
 A circular day picker component with customizable day length display and multiple selection options.
 
-![DefaultSelector](./assets/DefaultSelector.png)
+![DefaultSelector](./src/assets/DefaultSelector.png)
 
 ```jsx
 import React, { useState } from 'react';
@@ -52,7 +52,7 @@ export default function App() {
 
 A dropdown component that allows users to select one or more days from a list.
 
-![DropdownSelector](./assets/DropdownSelector.png)
+![DropdownSelector](./src/assets/DropdownSelector.png)
 
 ```jsx
 import React, { useState } from 'react';
@@ -79,7 +79,7 @@ export default function App() {
 
 A circular day picker component that visualizes selected days in a pie chart format.
 
-![CircularSelector](./assets/CircularSelector.png)
+![CircularSelector](./src/assets/CircularSelector.png)
 
 ```jsx
 import React, { useState } from 'react';
@@ -104,7 +104,7 @@ export default function App() {
 
 A custom dropdown component with tick icons for selected items.
 
-![CustomMenuSelector](./assets/CustomMenuSelector.png)
+![CustomMenuSelector](./src/assets/CustomMenuSelector.png)
 
 ```jsx
 import React, { useState } from 'react';
@@ -172,8 +172,7 @@ export default function App() {
 | `width`              | string   | false    | `150px`                                       | Width of the component.                              |
 | `inputTextColor`      | string   | false    | `#000000`       | Color of the input text.                      |
 | `placeholder`         | string   | false    | `Select days`   | Placeholder text for the dropdown input.      |
-| `inputBgColor`             | `string`              | false    | `#fff`           | Background color of the 
-input box.        | 
+| `inputBgColor`             | `string`              | false    | `#fff`           | Background color of the input box.     | 
 | `inputBoxStyle` | `React.CSSProperties` | false    | `{}`| Custom styles for the input box.      |
 | `dropdownContainerStyle` | `React.CSSProperties` | false    | `{}`| Custom styles for the dropdown container.      |
 | `dropdownItemStyle`          | `React.CSSProperties` | false    | `{}`| Custom styles for each dropdown item.                |
@@ -193,8 +192,7 @@ input box.        |
 | `iconOrder`             | `number`              | false    | `1`           | Order of the icons in the dropdown.               |
 | `dayOrder`              | `number`              | false    | `2`           | Order of the day names in the dropdown.           |
 | `tickOrder`             | `number`              | false    | `3`           | Order of the tick marks in the dropdown.          |
-| `inputBgColor`             | `string`              | false    | `#fff`           | Background color of the 
-input box.        | 
+| `inputBgColor`             | `string`              | false    | `#fff`           | Background color of the input box.        | 
 | `inputBoxStyle` | `React.CSSProperties` | false    | `{}`| Custom styles for the input box.      |
 | `dropdownContainerStyle`| `React.CSSProperties` | false    | `{}`   | Custom styles for the dropdown container.         |
 | `dropdownItemStyle`     | `React.CSSProperties` | false    | `{}`   | Custom styles for each dropdown item.             |
