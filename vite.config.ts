@@ -13,6 +13,7 @@ export default defineConfig({
     lib: {
       entry: "src/index.ts",
       name: "ReactWeekdaysPicker",
+      formats: ["es", "cjs"],
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
