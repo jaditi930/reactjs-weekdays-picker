@@ -22,15 +22,17 @@
  "license": "MIT",
  "repository": "https://github.com/jaditi930/reactjs-weekdays-picker",
  "main": "./dist/index.cjs.js",
-  "module": "./dist/index.es.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs.js"
-    }
-  },
-  "files": ["dist"],
+ "module": "./dist/index.es.js",
+ "types": "./dist/index.d.ts",
+ "exports": {
+  ".": {
+   "import": "./dist/index.es.js",
+   "require": "./dist/index.cjs.js"
+  }
+ },
+ "files": [
+  "dist"
+ ],
  "source": "src/index.js",
  "engines": {
   "node": ">=10"
@@ -55,14 +57,15 @@
   "react-plotly.js": "^2.6.0"
  },
  "devDependencies": {
-  "react": "^18.3.1",
-  "react-dom": "^18.3.1",
   "@types/react": "^18.3.1",
   "@types/react-dom": "^18.3.1",
   "@types/react-plotly.js": "^2.6.3",
   "@vitejs/plugin-react": "^4.2.0",
+  "react": "^18.3.1",
+  "react-dom": "^18.3.1",
   "typescript": "^5.9.3",
   "vite": "^5.0.0",
+  "vite-plugin-css-injected-by-js": "^3.5.2",
   "vite-plugin-dts": "^3.7.0"
  }
 }
