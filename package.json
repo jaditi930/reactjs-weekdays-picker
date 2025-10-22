@@ -1,59 +1,60 @@
 {
  "name": "reactjs-weekdays-picker",
-  "version": "1.1.2",
-  "description": "reactjs-weekdays-picker is a highly customizable React library that provides four versatile components for selecting days of the week. Whether you need a simple dropdown, a circular day picker, or a custom menu selector, this package offers flexible and easy-to-integrate options. Each component allows for extensive styling and behavior customization, ensuring seamless integration into any React application.",
-  "author": "jaditi930,akshay2002singh",
-  "homepage": "https://jaditi930.github.io/reactjs-weekdays-picker/",
-  "keywords": [
-    "React",
-    "day picker",
-    "weekdays picker",
-    "React components",
-    "day selection",
-    "customizable picker",
-    "dropdown selector",
-    "circular day picker",
-    "custom menu",
-    "React input components",
-    "week day input",
-    "react-day-selector",
-    "week selection"
-  ],
-  "license": "MIT",
-  "repository": "https://github.com/jaditi930/reactjs-weekdays-picker",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
-  "source": "src/index.js",
-  "engines": {
-    "node": ">=10"
-  },
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "release": "npm publish --access public",
-    "prepare": "npm run build",
-    "predeploy": "cd example && npm install --legacy-peer-deps && npm run build",
-    "deploy": "gh-pages -d example/build"
-  },
-  "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
-  },
-  "dependencies": {
-    "plotly.js": "^3.1.0",
-    "react-icons": "^5.3.0",
-    "react-plotly.js": "^2.6.0"
-  },
-  "devDependencies": {
-    "@types/react": "^19.1.12",
-    "@types/react-dom": "^19.1.9",
-    "@types/react-plotly.js": "^2.6.3",
-    "@vitejs/plugin-react": "^4.2.0",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "vite": "^5.0.0",
-    "vite-plugin-dts": "^3.7.0"
-  }
+ "version": "1.1.3",
+ "description": "reactjs-weekdays-picker is a highly customizable React library that provides four versatile components for selecting days of the week. Whether you need a simple dropdown, a circular day picker, or a custom menu selector, this package offers flexible and easy-to-integrate options. Each component allows for extensive styling and behavior customization, ensuring seamless integration into any React application.",
+ "author": "jaditi930,akshay2002singh",
+ "homepage": "https://jaditi930.github.io/reactjs-weekdays-picker/",
+ "keywords": [
+  "React",
+  "day picker",
+  "weekdays picker",
+  "React components",
+  "day selection",
+  "customizable picker",
+  "dropdown selector",
+  "circular day picker",
+  "custom menu",
+  "React input components",
+  "week day input",
+  "react-day-selector",
+  "week selection"
+ ],
+ "license": "MIT",
+ "repository": "https://github.com/jaditi930/reactjs-weekdays-picker",
+ "main": "dist/index.js",
+ "module": "dist/index.modern.js",
+ "source": "src/index.js",
+ "engines": {
+  "node": ">=10"
+ },
+ "scripts": {
+  "dev": "vite",
+  "build": "tsc -b && vite build",
+  "lint": "eslint .",
+  "preview": "vite preview",
+  "release": "npm publish --access public",
+  "prepare": "npm run build",
+  "predeploy": "cd example && npm install --legacy-peer-deps && npm run build",
+  "deploy": "gh-pages -d example/build"
+ },
+ "peerDependencies": {
+  "react": ">=18",
+  "react-dom": ">=18"
+ },
+ "dependencies": {
+  "plotly.js": "^3.1.0",
+  "react-icons": "^5.3.0",
+  "react-plotly.js": "^2.6.0"
+ },
+ "devDependencies": {
+  "@types/react": "^19.1.12",
+  "@types/react-dom": "^19.1.9",
+  "@types/react-plotly.js": "^2.6.3",
+  "@vitejs/plugin-react": "^4.2.0",
+  "react": "^19.1.1",
+  "react-dom": "^19.1.1",
+  "typescript": "^5.9.3",
+  "vite": "^5.0.0",
+  "vite-plugin-dts": "^3.7.0"
+ }
 }
