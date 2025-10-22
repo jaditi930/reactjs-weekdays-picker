@@ -30,6 +30,7 @@
       "require": "./dist/index.cjs.js"
     }
   },
+  "files": ["dist"],
  "source": "src/index.js",
  "engines": {
   "node": ">=10"
