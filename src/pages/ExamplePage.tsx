@@ -62,13 +62,15 @@ export default function ExamplePage() {
   multiple={true}
   state={daysDefault}
   setState={setDaysDefault}
-  dayList={["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]}
+  dayList={["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]}
   selectedColor="#007bff"
   unselectedColor="#d3d3d3"
-  selectedTextColor="#ffffff"
+  selectedTextColor="#000000"
   unselectedTextColor="#000000"
   width="200px"
   displayLength={3}
+  selectedHoverColor="#0056b3"
+  unselectedHoverColor="#e0e0e0"
 />`}</pre>
         <DefaultSelector
           multiple={true}
@@ -77,10 +79,12 @@ export default function ExamplePage() {
           dayList={["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]}
           selectedColor="#007bff"
           unselectedColor="#d3d3d3"
-          selectedTextColor="#ffffff"
+          selectedTextColor="#000000"
           unselectedTextColor="#000000"
           width="200px"
           displayLength={3}
+          selectedHoverColor="#0056b3"
+          unselectedHoverColor="#e0e0e0"
         />
       </div>
 
@@ -90,24 +94,32 @@ export default function ExamplePage() {
         <pre style={codeBlockStyle}>{`<DropdownSelector
   state={daysDropdown}
   setState={setDaysDropdown}
-  dayList={["Mon", "Tue", "Wed", "Thu", "Fri"]}
+  dayList={["Mon","Tue","Wed","Thu","Fri"]}
   multiple={true}
-  inputTextColor="#ffffff"
-  selectedColor="#ff5722"
-  unselectedColor="#444"
+  inputTextColor="#000000"
+  inputBgColor="#ffffff"
+  selectedColor="#007bff"
+  unselectedColor="#d3d3d3"
   width="220px"
-  placeholder="Select"
+  placeholder="Select days"
+  inputBoxStyle={{ borderRadius: "4px", padding: "4px" }}
+  dropdownContainerStyle={{ borderRadius: "6px" }}
+  dropdownItemStyle={{ padding: "6px 8px" }}
 />`}</pre>
         <DropdownSelector
           state={daysDropdown}
           setState={setDaysDropdown}
           dayList={["Mon", "Tue", "Wed", "Thu", "Fri"]}
           multiple={true}
-          inputTextColor="#ffffff"
-          selectedColor="#ff5722"
-          unselectedColor="#444"
+          inputTextColor="#000000"
+          inputBgColor="#ffffff"
+          selectedColor="#007bff"
+          unselectedColor="#d3d3d3"
           width="220px"
-          placeholder="Select"
+          placeholder="Select days"
+          inputBoxStyle={{ borderRadius: "4px", padding: "4px" }}
+          dropdownContainerStyle={{ borderRadius: "6px" }}
+          dropdownItemStyle={{ padding: "6px 8px" }}
         />
       </div>
 
@@ -138,18 +150,28 @@ export default function ExamplePage() {
         <pre style={codeBlockStyle}>{`<CustomMenuSelector
   state={daysMenu}
   setState={setDaysMenu}
-  dayList={["Mon", "Tue", "Wed"]}
+  dayList={["Mon","Tue","Wed"]}
   placeholder="Select days"
+  inputTextColor="#000000"
+  inputBgColor="#ffffff"
   showIcons={true}
   showTicks={true}
+  inputBoxStyle={{ borderRadius: "4px", padding: "4px" }}
+  dropdownContainerStyle={{ borderRadius: "6px" }}
+  dropdownItemStyle={{ padding: "6px 8px" }}
 />`}</pre>
         <CustomMenuSelector
           state={daysMenu}
           setState={setDaysMenu}
           dayList={["Mon", "Tue", "Wed"]}
           placeholder="Select days"
+          inputTextColor="#000000"
+          inputBgColor="#ffffff"
           showIcons={true}
           showTicks={true}
+          inputBoxStyle={{ borderRadius: "4px", padding: "4px" }}
+          dropdownContainerStyle={{ borderRadius: "6px" }}
+          dropdownItemStyle={{ padding: "6px 8px" }}
         />
       </div>
     </div>
