@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,CSSProperties } from "react";
 import {
   DefaultSelector,
   DropdownSelector,
@@ -31,7 +31,7 @@ const titleStyle = {
   color: "#00d4ff",
 };
 
-const codeBlockStyle = {
+const codeBlockStyle: CSSProperties  = {
   background: "#2d2d2d",
   color: "#f8f8f2",
   fontFamily: "monospace",
@@ -44,10 +44,10 @@ const codeBlockStyle = {
 
 // ====== Example Page ======
 export default function ExamplePage() {
-  const [daysDefault, setDaysDefault] = useState([]);
-  const [daysDropdown, setDaysDropdown] = useState([]);
-  const [daysCircular, setDaysCircular] = useState([]);
-  const [daysMenu, setDaysMenu] = useState([]);
+  const [daysDefault, setDaysDefault] = useState<string[]>([]);
+  const [daysDropdown, setDaysDropdown] = useState<string[]>([]);
+  const [daysCircular, setDaysCircular] = useState<string[]>([]);
+  const [daysMenu, setDaysMenu] = useState<string[]>([]);
 
   return (
     <div style={containerStyle}>
